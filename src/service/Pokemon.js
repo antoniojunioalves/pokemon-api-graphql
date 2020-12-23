@@ -1,8 +1,17 @@
 import pokemons from "../pokemons/pokemons.json";
 
-export async function getPokemons({ first, offset }) {
-  const searchedPokemons = pokemons.slice(offset, first + offset);
-  // const edges = searchedPokemons.map(pokemon => ({ node: pokemon }));
+export async function getPokemons({ first, offset, name }) {
+  let searchedPokemons;
+
+  if (!!name) {
+    console.log("Entrou", name);
+    searchedPokemons = pokemons.filter(
+      (pokemon) => pokemon.name.toUpperCase() === name.toUpperCase()
+    );
+  } else {
+    searchedPokemons = pokemons.slice(offset, first + offset);
+  }
+  const edges = searchedPokemons.map((pokemon) => ({ node: pokemon }));
   return searchedPokemons || null;
 }
 
