@@ -1,13 +1,8 @@
 import pokemons from "../pokemons/pokemons.json";
 
 export async function getPokemons({ first, offset }) {
-  console.log("first", first);
-  console.log("offset", offset);
-
   const searchedPokemons = pokemons.slice(offset, first + offset);
-
   // const edges = searchedPokemons.map(pokemon => ({ node: pokemon }));
-
   return searchedPokemons || null;
 }
 
